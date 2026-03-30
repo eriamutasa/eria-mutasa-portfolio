@@ -177,7 +177,13 @@
                             gap: 0.4rem;
                         }
                         .tag-hard { font-size:0.75rem; padding: 2px 8px; border: 1px solid var(--text-accent); border-radius: 4px; color: var(--text-primary); background: rgba(0, 240, 255, 0.05); }
+                        .tag-hard { font-size:0.75rem; padding: 2px 8px; border: 1px solid var(--text-accent); border-radius: 4px; color: var(--text-primary); background: rgba(0, 240, 255, 0.05); animation: tagPulse 3s infinite alternate; }
+                        @keyframes tagPulse {
+                            0% { box-shadow: 0 0 0 rgba(0, 240, 255, 0); }
+                            100% { box-shadow: 0 0 5px rgba(0, 240, 255, 0.3); }
+                        }
                         .tag-soft { font-size:0.75rem; padding: 2px 8px; border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-secondary); }
+                        .tag-hard i { margin-right: 4px; color: var(--text-accent); }
                     </style>
                     <div class="card-icon" style="margin-bottom:0.5rem;"><i class="fa-solid fa-microchip"></i></div>
                     <h4 style="margin-bottom:0.3rem;">Core Competencies</h4>
@@ -185,51 +191,51 @@
                         <div class="scroll-track">
                             <!-- Group 1 -->
                             <div class="tag-group">
-                                <span class="tag-hard">Splunk Enterprise</span>
-                                <span class="tag-hard">Python (Boto3)</span>
+                                <span class="tag-hard"><i class="fa-solid fa-server"></i> Splunk Enterprise</span>
+                                <span class="tag-hard"><i class="fa-brands fa-python"></i> Python (Boto3)</span>
                                 <span class="tag-soft">Access Control</span>
                                 <span class="tag-soft">Cryptography</span>
                                 <span class="tag-soft">Cyber Forensics</span>
                                 <span class="tag-soft">Data Security</span>
                                 <span class="tag-soft">Disaster Recovery</span>
                                 <span class="tag-soft">Firewall Config</span>
-                                <span class="tag-hard">AWS IAM & S3</span>
+                                <span class="tag-hard"><i class="fa-brands fa-aws"></i> AWS IAM & S3</span>
                                 <span class="tag-soft">InfoSec Management</span>
                                 <span class="tag-soft">Malware Analysis</span>
                                 <span class="tag-soft">Mobile Device Security</span>
                                 <span class="tag-soft">Network Security</span>
-                                <span class="tag-hard">Wireshark</span>
+                                <span class="tag-hard"><i class="fa-solid fa-network-wired"></i> Wireshark</span>
                                 <span class="tag-soft">Security Awareness</span>
                                 <span class="tag-soft">Security Config</span>
                                 <span class="tag-soft">Security Policies</span>
                                 <span class="tag-soft">Threat Detection</span>
                                 <span class="tag-soft">Threat Management</span>
-                                <span class="tag-hard">Nmap</span>
-                                <span class="tag-hard">Bash</span>
+                                <span class="tag-hard"><i class="fa-solid fa-satellite-dish"></i> Nmap</span>
+                                <span class="tag-hard"><i class="fa-solid fa-terminal"></i> Bash</span>
                             </div>
                             <!-- Group 2 (Duplicate for seamless loop) -->
                             <div class="tag-group">
-                                <span class="tag-hard">Splunk Enterprise</span>
-                                <span class="tag-hard">Python (Boto3)</span>
+                                <span class="tag-hard"><i class="fa-solid fa-server"></i> Splunk Enterprise</span>
+                                <span class="tag-hard"><i class="fa-brands fa-python"></i> Python (Boto3)</span>
                                 <span class="tag-soft">Access Control</span>
                                 <span class="tag-soft">Cryptography</span>
                                 <span class="tag-soft">Cyber Forensics</span>
                                 <span class="tag-soft">Data Security</span>
                                 <span class="tag-soft">Disaster Recovery</span>
                                 <span class="tag-soft">Firewall Config</span>
-                                <span class="tag-hard">AWS IAM & S3</span>
+                                <span class="tag-hard"><i class="fa-brands fa-aws"></i> AWS IAM & S3</span>
                                 <span class="tag-soft">InfoSec Management</span>
                                 <span class="tag-soft">Malware Analysis</span>
                                 <span class="tag-soft">Mobile Device Security</span>
                                 <span class="tag-soft">Network Security</span>
-                                <span class="tag-hard">Wireshark</span>
+                                <span class="tag-hard"><i class="fa-solid fa-network-wired"></i> Wireshark</span>
                                 <span class="tag-soft">Security Awareness</span>
                                 <span class="tag-soft">Security Config</span>
                                 <span class="tag-soft">Security Policies</span>
                                 <span class="tag-soft">Threat Detection</span>
                                 <span class="tag-soft">Threat Management</span>
-                                <span class="tag-hard">Nmap</span>
-                                <span class="tag-hard">Bash</span>
+                                <span class="tag-hard"><i class="fa-solid fa-satellite-dish"></i> Nmap</span>
+                                <span class="tag-hard"><i class="fa-solid fa-terminal"></i> Bash</span>
                             </div>
                         </div>
                     </div>
