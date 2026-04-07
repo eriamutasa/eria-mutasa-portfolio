@@ -1,1 +1,167 @@
+# =============================================================
+# SOC LAB 1 — BRUTE FORCE DETECTION QUERIES
+# Author:  Eria Mutasa | eriamutasa27@gmail.com
+# GitHub:  github.com/eriamutasa/eria-mutasa-portfolio
+# LinkedIn: linkedin.com/in/eria-mutasa-547929193
+# Date:    April 2026
+# SIEM:    Splunk Enterprise 10.2.1
+# =============================================================
+# MITRE ATT&CK Reference: T1110 — Brute Force
+# =============================================================
 
+
+# -------------------------------------------------------------
+# QUERY 1 — BASELINE: Confirm All Logs Are Flowing
+# Purpose:  Verify log ingestion pipeline is working
+# Expected: Windows Security, System, Application events
+# -------------------------------------------------------------
+
+index=main
+| head 20
+
+
+# -------------------------------------------------------------
+# QUERY 2 — ALL FAILED LOGIN EVENTS
+# Purpose:  Find every failed logon attempt on the host
+# EventCode 4625 = Failed Logon (Windows Security Log)
+# -------------------------------------------------------------
+
+index=main EventCode=4625 LogName=Security
+
+
+# -------------------------------------------------------------
+# QUERY 3 — BRUTE FORCE PATTERN DETECTION
+# Purpose:  Aggregate failed logins by account and failure reason
+#           High count from same account = brute force indicator
+# -------------------------------------------------------------
+
+index=main EventCode=4625 LogName=Security
+| stats count by Account_Name, Failure_Reason
+| sort -count
+
+
+# -------------------------------------------------------------
+# QUERY 4 — SOURCE IP ANALYSIS
+# Purpose:  Identify which IP is generating the most failures
+#           In a real attack, Kali Linux IP will appear here
+# -------------------------------------------------------------
+
+index=main EventCode=4625 LogName=Security
+| stats count by src_ip, Account_Name
+| sort -count
+
+
+# -------------------------------------------------------------
+# QUERY 5 — TIME-BASED SPIKE DETECTION
+# Purpose:  Detect spikes in login failures per minute
+#           Automated tools generate unnatural spikes
+# -------------------------------------------------------------
+
+index=main EventCode=4625 LogName=Security
+| bucket _time span=1m
+| stats count by _time, src_ip
+| sort -_time
+
+
+# -------------------------------------------------------------
+# QUERY 6 — SUCCESSFUL LOGIN AFTER FAILURES (COMPROMISE CHECK)
+# Purpose:  Check if attacker eventually succeeded
+#           4625 = fail, 4624 = success
+#           Success after many failures = possible compromise
+# -------------------------------------------------------------
+
+index=main (EventCode=4625 OR EventCode=4624) LogName=Security
+| stats count by EventCode, Account_Name, src_ip
+| sort -count
+
+
+# -------------------------------------------------------------
+# QUERY 7 — FULL ATTACK TIMELINE
+# Purpose:  Build a complete timeline of the attack
+#           Shows every event in chronological order
+# -------------------------------------------------------------
+
+index=main EventCode=4625 LogName=Security
+| table _time, Account_Name, src_ip, Failure_Reason, ComputerName
+| sort _time
+
+
+# -------------------------------------------------------------
+# QUERY 8 — DASHBOARD VISUALISATION (BAR CHART)
+# Purpose:  Power a bar chart showing failures per account
+#           Use this in the Splunk Dashboard builder
+# Visualisation: Bar Chart
+# -------------------------------------------------------------
+
+index=main EventCode=4625 LogName=Security
+| stats count by Account_Name
+| sort -count
+
+
+# -------------------------------------------------------------
+# QUERY 9 — DASHBOARD VISUALISATION (LINE CHART OVER TIME)
+# Purpose:  Power a line chart showing attack volume over time
+#           Spike pattern confirms automated brute force
+# Visualisation: Line Chart
+# -------------------------------------------------------------
+
+index=main EventCode=4625 LogName=Security
+| timechart span=1m count by src_ip
+
+
+# -------------------------------------------------------------
+# QUERY 10 — MACHINE ACCOUNT ANALYSIS
+# Purpose:  Filter machine accounts (end with $) vs human accounts
+#           Machine account failures are often normal background noise
+#           Human account failures need immediate investigation
+# -------------------------------------------------------------
+
+index=main EventCode=4625 LogName=Security
+| eval AccountType=if(match(Account_Name, "\$$"), "Machine Account", "Human Account")
+| stats count by AccountType, Account_Name, Failure_Reason
+| sort -count
+
+
+# -------------------------------------------------------------
+# QUERY 11 — ALERT THRESHOLD QUERY (SOC RULE)
+# Purpose:  Trigger an alert if more than 5 failures in 5 minutes
+#           This is how real SOC alert rules are written
+#           Set as a Splunk Scheduled Alert for automation
+# -------------------------------------------------------------
+
+index=main EventCode=4625 LogName=Security earliest=-5m
+| stats count by src_ip
+| where count > 5
+
+
+# -------------------------------------------------------------
+# QUERY 12 — POST-ATTACK FORENSICS SUMMARY
+# Purpose:  Full investigation summary in one query
+#           Use this when writing your incident report
+# -------------------------------------------------------------
+
+index=main (EventCode=4625 OR EventCode=4624) LogName=Security
+| eval EventDescription=case(
+    EventCode=4625, "FAILED Logon",
+    EventCode=4624, "SUCCESSFUL Logon",
+    true(), "Other"
+  )
+| table _time, EventDescription, Account_Name, src_ip, Failure_Reason, ComputerName
+| sort _time
+
+
+# =============================================================
+# END OF DETECTION QUERIES
+# =============================================================
+# INTERVIEW CHEAT SHEET:
+# - EventCode 4625 = Failed Logon
+# - EventCode 4624 = Successful Logon
+# - EventCode 4648 = Logon with explicit credentials
+# - EventCode 4719 = Audit policy changed
+# - Machine accounts end with $ — usually background noise
+# - stats + sort   = aggregation to find attack patterns
+# - timechart      = time-based visualisation for spikes
+# - bucket _time   = group events into time windows
+# - eval           = create new calculated fields
+# - where          = filter results by condition
+# =============================================================
