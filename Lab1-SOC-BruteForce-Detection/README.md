@@ -215,7 +215,7 @@ This lab is part of a larger cybersecurity portfolio series:
 Building hands-on SOC, vulnerability assessment, and web security labs to develop real-world detection and response skills using industry-standard tools.
 
 📧 eriamutasa27@gmail.com
-🔗 [LinkedIn](#) | [[GitHub][(#)](https://github.com/eriamutasa/eria-mutasa-portfolio)]
+🔗 [LinkedIn](https://www.linkedin.com/in/eria-mutasa-547929193) | [GitHub](https://github.com/eriamutasa/eria-mutasa-portfolio)
 
 ---
 
