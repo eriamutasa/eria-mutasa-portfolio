@@ -246,6 +246,133 @@
             </div>
         </section>
 
+        <!-- Proof of Work Section -->
+        <section id="badges" class="bento-section fade-up">
+            <div class="section-header">
+                <h2>// PROOF OF WORK</h2>
+                <div class="header-line"></div>
+            </div>
+
+            <style>
+                .badge-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                    gap: 1.25rem;
+                }
+                .field-badge-card {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    padding: 1.5rem;
+                    text-decoration: none;
+                    color: inherit;
+                    transition: var(--transition);
+                }
+                .field-badge-card:hover {
+                    border-color: var(--text-accent);
+                    transform: translateY(-5px);
+                    box-shadow: 0 5px 20px rgba(0, 240, 255, 0.15);
+                }
+                .field-badge-icon {
+                    font-size: 2.5rem;
+                    margin-bottom: 1rem;
+                    color: var(--text-highlight);
+                }
+                .aws-color { color: #FF9900; }
+                .thm-color { color: #9FB643; }
+                .ms-color { color: #00A4EF; }
+                .field-badge-title {
+                    font-size: 1rem;
+                    font-weight: 600;
+                    margin-bottom: 0.5rem;
+                    color: var(--text-primary);
+                }
+                .field-badge-issuer {
+                    font-size: 0.8rem;
+                    color: var(--text-secondary);
+                    font-family: var(--font-heading);
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                }
+                .verified-tag {
+                    margin-top: 1rem;
+                    font-size: 0.7rem;
+                    padding: 2px 8px;
+                    border-radius: 10px;
+                    background: rgba(0, 255, 102, 0.1);
+                    color: #00ff66;
+                    border: 1px solid rgba(0, 255, 102, 0.3);
+                }
+            </style>
+
+            <div class="badge-grid">
+                <!-- TryHackMe 1 -->
+                <a href="https://tryhackme.com/login?badge=MutasaEria:hash-cracker" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-solid fa-terminal field-badge-icon thm-color"></i>
+                    <div class="field-badge-title">Hash Cracker</div>
+                    <div class="field-badge-issuer">TryHackMe</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- TryHackMe 2 -->
+                <a href="https://tryhackme.com/?badge=MutasaEria:blue" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-solid fa-shield-halved field-badge-icon thm-color"></i>
+                    <div class="field-badge-title">Blue</div>
+                    <div class="field-badge-issuer">TryHackMe</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- TryHackMe 3 -->
+                <a href="https://tryhackme.com/?badge=MutasaEria:ohsint" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-solid fa-magnifying-glass field-badge-icon thm-color"></i>
+                    <div class="field-badge-title">OhSINT</div>
+                    <div class="field-badge-issuer">TryHackMe</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- AWS 1 -->
+                <a href="https://www.credly.com/badges/c17dc2a8-3200-43d9-9443-3006635a6e16/linked_in?t=t68mee" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-brands fa-aws field-badge-icon aws-color"></i>
+                    <div class="field-badge-title">Cloud Security Foundations</div>
+                    <div class="field-badge-issuer">AWS Academy</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- AWS 2 -->
+                <a href="https://www.credly.com/badges/561d3ecb-f892-49fc-b988-95a7aebc424b/linked_in?t=t5u5fv" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-brands fa-aws field-badge-icon aws-color"></i>
+                    <div class="field-badge-title">Cloud Architecting</div>
+                    <div class="field-badge-issuer">AWS Academy</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- AWS 3 -->
+                <a href="https://www.credly.com/badges/f21038cd-fa27-4f65-9689-9f7b5ea6037b/linked_in?t=t47fqw" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-brands fa-aws field-badge-icon aws-color"></i>
+                    <div class="field-badge-title">Cloud Foundations</div>
+                    <div class="field-badge-issuer">AWS Academy</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- Microsoft 1 -->
+                <a href="https://learn.microsoft.com/en-us/users/eriamutasa-0579/achievements/uad72p53?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-brands fa-windows field-badge-icon ms-color"></i>
+                    <div class="field-badge-title">Microsoft Achievement</div>
+                    <div class="field-badge-issuer">Microsoft Learn</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- Microsoft 2 -->
+                <a href="https://learn.microsoft.com/en-us/users/eriamutasa-0579/achievements/wv5ykz5n?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-brands fa-windows field-badge-icon ms-color"></i>
+                    <div class="field-badge-title">Microsoft Achievement</div>
+                    <div class="field-badge-issuer">Microsoft Learn</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+            </div>
+        </section>
+
         <!-- Experience Section -->
         <section id="experience" class="bento-section fade-up">
             <div class="section-header">
