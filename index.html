@@ -254,10 +254,26 @@
             </div>
 
             <style>
-                .badge-grid {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                @keyframes badgeScrollLeftLive {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+                .badge-marquee-container {
+                    overflow: hidden;
+                    position: relative;
+                    width: 100%;
+                    padding: 1rem 0;
+                    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+                    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+                }
+                .badge-marquee-track {
+                    display: flex;
                     gap: 1.25rem;
+                    width: max-content;
+                    animation: badgeScrollLeftLive 35s linear infinite;
+                }
+                .badge-marquee-track:hover {
+                    animation-play-state: paused;
                 }
                 .field-badge-card {
                     display: flex;
@@ -267,6 +283,8 @@
                     padding: 1.5rem;
                     text-decoration: none;
                     color: inherit;
+                    width: 240px; /* Fixed width for horizontal scrolling flex items */
+                    flex-shrink: 0;
                     transition: var(--transition);
                 }
                 .field-badge-card:hover {
@@ -304,53 +322,206 @@
                     color: #00ff66;
                     border: 1px solid rgba(0, 255, 102, 0.3);
                 }
-                .badge-vault {
-                    max-height: 250px;
-                    overflow: hidden;
-                    padding-right: 1rem;
-                    position: relative;
-                    border: 1px solid rgba(0, 240, 255, 0.2);
-                    border-radius: 12px;
-                    background: rgba(5, 5, 10, 0.4);
-                    padding: 1.5rem;
-                    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
-                    transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-                }
-                .badge-vault::after {
-                    content: '';
-                    position: absolute;
-                    bottom: 0; left: 0; right: 0;
-                    height: 100px;
-                    background: linear-gradient(to top, rgba(14, 15, 23, 1) 10%, transparent);
-                    pointer-events: none;
-                    transition: opacity 0.4s ease;
-                    border-bottom-left-radius: 12px;
-                    border-bottom-right-radius: 12px;
-                }
-                .badge-vault:hover {
-                    max-height: 350px;
-                    overflow-y: auto;
-                    box-shadow: inset 0 0 50px rgba(0, 240, 255, 0.05);
-                }
-                .badge-vault:hover::after {
-                    opacity: 0;
-                }
-                .badge-vault::-webkit-scrollbar {
-                    width: 6px;
-                }
-                .badge-vault::-webkit-scrollbar-track {
-                    background: rgba(255, 255, 255, 0.02);
-                    border-radius: 4px;
-                }
-                .badge-vault::-webkit-scrollbar-thumb {
-                    background: var(--text-accent);
-                    border-radius: 4px;
-                    box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
-                }
             </style>
 
-            <div class="badge-vault scrollable-body">
-                <div class="badge-grid">
+            <div class="badge-marquee-container">
+                <div class="badge-marquee-track">
+                    <!-- Group 1 -->
+                <!-- TryHackMe 1 -->
+                <a href="https://tryhackme.com/login?badge=MutasaEria:hash-cracker" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-solid fa-terminal field-badge-icon thm-color"></i>
+                    <div class="field-badge-title">Hash Cracker</div>
+                    <div class="field-badge-issuer">TryHackMe</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- TryHackMe 2 -->
+                <a href="https://tryhackme.com/?badge=MutasaEria:blue" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-solid fa-shield-halved field-badge-icon thm-color"></i>
+                    <div class="field-badge-title">Blue</div>
+                    <div class="field-badge-issuer">TryHackMe</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- TryHackMe 3 -->
+                <a href="https://tryhackme.com/?badge=MutasaEria:ohsint" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-solid fa-magnifying-glass field-badge-icon thm-color"></i>
+                    <div class="field-badge-title">OhSINT</div>
+                    <div class="field-badge-issuer">TryHackMe</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- AWS 1 -->
+                <a href="https://www.credly.com/badges/c17dc2a8-3200-43d9-9443-3006635a6e16/linked_in?t=t68mee" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-brands fa-aws field-badge-icon aws-color"></i>
+                    <div class="field-badge-title">Cloud Security Foundations</div>
+                    <div class="field-badge-issuer">AWS Academy</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- AWS 2 -->
+                <a href="https://www.credly.com/badges/561d3ecb-f892-49fc-b988-95a7aebc424b/linked_in?t=t5u5fv" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-brands fa-aws field-badge-icon aws-color"></i>
+                    <div class="field-badge-title">Cloud Architecting</div>
+                    <div class="field-badge-issuer">AWS Academy</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- AWS 3 -->
+                <a href="https://www.credly.com/badges/f21038cd-fa27-4f65-9689-9f7b5ea6037b/linked_in?t=t47fqw" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-brands fa-aws field-badge-icon aws-color"></i>
+                    <div class="field-badge-title">Cloud Foundations</div>
+                    <div class="field-badge-issuer">AWS Academy</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- Microsoft 1 -->
+                <a href="https://learn.microsoft.com/en-us/users/eriamutasa-0579/achievements/uad72p53?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-brands fa-windows field-badge-icon ms-color"></i>
+                    <div class="field-badge-title">Microsoft Achievement</div>
+                    <div class="field-badge-issuer">Microsoft Learn</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- Microsoft 2 -->
+                <a href="https://learn.microsoft.com/en-us/users/eriamutasa-0579/achievements/wv5ykz5n?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-brands fa-windows field-badge-icon ms-color"></i>
+                    <div class="field-badge-title">Microsoft Achievement</div>
+                    <div class="field-badge-issuer">Microsoft Learn</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                    <!-- Group 2 (Duplicate for seamless loop) -->
+                <!-- TryHackMe 1 -->
+                <a href="https://tryhackme.com/login?badge=MutasaEria:hash-cracker" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-solid fa-terminal field-badge-icon thm-color"></i>
+                    <div class="field-badge-title">Hash Cracker</div>
+                    <div class="field-badge-issuer">TryHackMe</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- TryHackMe 2 -->
+                <a href="https://tryhackme.com/?badge=MutasaEria:blue" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-solid fa-shield-halved field-badge-icon thm-color"></i>
+                    <div class="field-badge-title">Blue</div>
+                    <div class="field-badge-issuer">TryHackMe</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- TryHackMe 3 -->
+                <a href="https://tryhackme.com/?badge=MutasaEria:ohsint" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-solid fa-magnifying-glass field-badge-icon thm-color"></i>
+                    <div class="field-badge-title">OhSINT</div>
+                    <div class="field-badge-issuer">TryHackMe</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- AWS 1 -->
+                <a href="https://www.credly.com/badges/c17dc2a8-3200-43d9-9443-3006635a6e16/linked_in?t=t68mee" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-brands fa-aws field-badge-icon aws-color"></i>
+                    <div class="field-badge-title">Cloud Security Foundations</div>
+                    <div class="field-badge-issuer">AWS Academy</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- AWS 2 -->
+                <a href="https://www.credly.com/badges/561d3ecb-f892-49fc-b988-95a7aebc424b/linked_in?t=t5u5fv" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-brands fa-aws field-badge-icon aws-color"></i>
+                    <div class="field-badge-title">Cloud Architecting</div>
+                    <div class="field-badge-issuer">AWS Academy</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- AWS 3 -->
+                <a href="https://www.credly.com/badges/f21038cd-fa27-4f65-9689-9f7b5ea6037b/linked_in?t=t47fqw" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-brands fa-aws field-badge-icon aws-color"></i>
+                    <div class="field-badge-title">Cloud Foundations</div>
+                    <div class="field-badge-issuer">AWS Academy</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- Microsoft 1 -->
+                <a href="https://learn.microsoft.com/en-us/users/eriamutasa-0579/achievements/uad72p53?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-brands fa-windows field-badge-icon ms-color"></i>
+                    <div class="field-badge-title">Microsoft Achievement</div>
+                    <div class="field-badge-issuer">Microsoft Learn</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- Microsoft 2 -->
+                <a href="https://learn.microsoft.com/en-us/users/eriamutasa-0579/achievements/wv5ykz5n?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-brands fa-windows field-badge-icon ms-color"></i>
+                    <div class="field-badge-title">Microsoft Achievement</div>
+                    <div class="field-badge-issuer">Microsoft Learn</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                    <!-- Group 2 (Duplicate for seamless loop) -->
+                <!-- TryHackMe 1 -->
+                <a href="https://tryhackme.com/login?badge=MutasaEria:hash-cracker" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-solid fa-terminal field-badge-icon thm-color"></i>
+                    <div class="field-badge-title">Hash Cracker</div>
+                    <div class="field-badge-issuer">TryHackMe</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- TryHackMe 2 -->
+                <a href="https://tryhackme.com/?badge=MutasaEria:blue" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-solid fa-shield-halved field-badge-icon thm-color"></i>
+                    <div class="field-badge-title">Blue</div>
+                    <div class="field-badge-issuer">TryHackMe</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- TryHackMe 3 -->
+                <a href="https://tryhackme.com/?badge=MutasaEria:ohsint" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-solid fa-magnifying-glass field-badge-icon thm-color"></i>
+                    <div class="field-badge-title">OhSINT</div>
+                    <div class="field-badge-issuer">TryHackMe</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- AWS 1 -->
+                <a href="https://www.credly.com/badges/c17dc2a8-3200-43d9-9443-3006635a6e16/linked_in?t=t68mee" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-brands fa-aws field-badge-icon aws-color"></i>
+                    <div class="field-badge-title">Cloud Security Foundations</div>
+                    <div class="field-badge-issuer">AWS Academy</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- AWS 2 -->
+                <a href="https://www.credly.com/badges/561d3ecb-f892-49fc-b988-95a7aebc424b/linked_in?t=t5u5fv" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-brands fa-aws field-badge-icon aws-color"></i>
+                    <div class="field-badge-title">Cloud Architecting</div>
+                    <div class="field-badge-issuer">AWS Academy</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- AWS 3 -->
+                <a href="https://www.credly.com/badges/f21038cd-fa27-4f65-9689-9f7b5ea6037b/linked_in?t=t47fqw" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-brands fa-aws field-badge-icon aws-color"></i>
+                    <div class="field-badge-title">Cloud Foundations</div>
+                    <div class="field-badge-issuer">AWS Academy</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- Microsoft 1 -->
+                <a href="https://learn.microsoft.com/en-us/users/eriamutasa-0579/achievements/uad72p53?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-brands fa-windows field-badge-icon ms-color"></i>
+                    <div class="field-badge-title">Microsoft Achievement</div>
+                    <div class="field-badge-issuer">Microsoft Learn</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                <!-- Microsoft 2 -->
+                <a href="https://learn.microsoft.com/en-us/users/eriamutasa-0579/achievements/wv5ykz5n?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" class="glass-panel interactive-card field-badge-card">
+                    <i class="fa-brands fa-windows field-badge-icon ms-color"></i>
+                    <div class="field-badge-title">Microsoft Achievement</div>
+                    <div class="field-badge-issuer">Microsoft Learn</div>
+                    <div class="verified-tag"><i class="fa-solid fa-check-circle"></i> Verified</div>
+                </a>
+
+                    <!-- Group 2 (Duplicate for seamless loop) -->
                 <!-- TryHackMe 1 -->
                 <a href="https://tryhackme.com/login?badge=MutasaEria:hash-cracker" target="_blank" class="glass-panel interactive-card field-badge-card">
                     <i class="fa-solid fa-terminal field-badge-icon thm-color"></i>
